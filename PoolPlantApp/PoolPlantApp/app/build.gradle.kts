@@ -9,8 +9,8 @@ android {
         applicationId = "com.poolplant.app"
         minSdk = 24
         targetSdk = 34
-        versionCode = 34
-        versionName = "34.0"
+        versionCode = 35
+        versionName = "35.0"
     }
     compileOptions { sourceCompatibility = JavaVersion.VERSION_17; targetCompatibility = JavaVersion.VERSION_17 }
     kotlinOptions { jvmTarget = "17" }

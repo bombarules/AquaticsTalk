@@ -41,7 +41,7 @@ function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp
 function home(){
  app.innerHTML='<h1>Pools Maintenance</h1><p class="sub">Pick a pool to see its projects.</p><div class="list">'+
   POOLS.map(function(p){return '<button class="row" data-id="'+p.id+'"><span class="e" aria-hidden="true">\uD83D\uDCA7</span><span class="tx"><span class="t">'+esc(p.n)+'</span></span><span class="cnt">'+p.items.length+'</span><span class="chev" aria-hidden="true"></span></button>'}).join('')+'</div>'+
-  '<p class="foot">Seven pools. Add a project to any of them and it shows up here.</p>';
+  '<p class="foot">App version 35 &middot; seven pools</p>';
  [].forEach.call(app.querySelectorAll('.row'),function(b){b.onclick=function(){location.hash='#/'+b.getAttribute('data-id')}});
 }
 function pool(p){
