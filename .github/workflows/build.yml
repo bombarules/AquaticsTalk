@@ -9,8 +9,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Unzip project
-        run: unzip -q PoolPlantApp.zip
+        with:
+          fetch-depth: 0
+      - name: Unzip the newest project zip
+        run: |
+          newest=$(for f in *.zip; do echo "$(git log -1 --format=%ct -- "$f") $f"; done | sort -n | tail -1 | cut -d' ' -f2-)
+          echo "Using zip: $newest"
+          rm -rf PoolPlantApp
+          unzip -q "$newest"
+          grep -E "versionCode|versionName" PoolPlantApp/app/build.gradle.kts
       - uses: actions/setup-java@v4
         with:
           distribution: temurin
@@ -32,5 +39,6 @@ jobs:
         with:
           tag_name: latest
           name: Pool Plant APK (latest)
-          body: Open this page on your phone, tap PoolPlant.apk, then open the file to install.
+          body: Open this page on your phone, tap PoolPlant.apk, then open the file to install. After installing, the bottom of the app home screen shows its version number.
           files: PoolPlant.apk
+          overwrite_files: true
